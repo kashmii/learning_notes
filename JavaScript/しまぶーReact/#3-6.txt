@@ -1,0 +1,102 @@
+#3
+「Propsを使ってコンポーネントの表示を出し分け」
+https://www.youtube.com/watch?v=Ai9rMk5QbOo&list=PLwM1-TnN_NN6fUhOoZyU4iZiwhLyISopO&index=3&t=190s&ab_channel=%E3%81%97%E3%81%BE%E3%81%B6%E3%83%BC%E3%81%AEIT%E5%A4%A7%E5%AD%A6
+
+
+React.Fragmentについて
+ReactのFragmentは、コンポーネント内で複数の要素をラップせずに複数の要素を返すための手段です。
+通常、Reactでは1つのコンポーネントからは1つの要素しか返せないため、Fragmentを使用することでこれを回避できます。
+
+しまぶーのFragmentの説明
+「Fragmentを使わず、div要素で囲む方が良い」
+  理由： 1. Fragmentを使うと、1つのコンポーネントから複数の要素が返るため、CSSが予想外の挙動を生む可能性がある。
+
+
+propsを親コンポーネントから子コンポーネントに渡す方法
+1. 子コンポーネントの引数にpropsを定義する
+  ※typescriptの場合は、型を定義する
+    ex. export function Headline(props: { page_name: string, onClick: () => void })
+2. 親コンポーネントのJSX内で、子コンポーネントの引数に渡したい値を記述する
+3. 子コンポーネントのJSX内で、propsを使用する
+
+***
+プチ情報
+cssで頭文字を大文字にできる： text-transform: capitalize;
+***
+
+typescriptでなく素のReactを使う場合、propsの型を定義する必要はない。
+
+===
+===
+
+#4
+「Propsに色んなデータを渡したり、Childrenを使ってみよう」
+
+Next.jsのpages配下のものは`export default`にする必要がある
+
+【型の違いによるpropsの渡し方】
+数値 ... 波括弧で囲む
+  ex. num={1234}
+
+オブジェクト ... 結果的に波括弧が二重になる
+  ex. obj={{name: 'shimabu', age: 20}}
+
+真偽値 ... 1.true/falseをそのまま記述する
+          2.項目名だけを記述すると、trueとして扱われる
+            ex. bool // true
+
+コンポーネント
+
+関数 ...
+
+children ... コンポーネントのタグの間に記述する
+             コンポーネントを渡すときによく使う
+  ex. <Headline>ここに記述したものがchildrenになる</Headline>
+      子コンポーネントの引数にはchildren?: stringと記述する（stringの部分は型に合わせる）
+
+***
+プチ情報
+import { Main } from '@/components/main'
+@/は、プロジェクトのルートディレクトリを表すエイリアスです。
+***
+
+===
+
+#5
+「CSS Modulesを使うとCSSの管理が楽になる」
+
+従来はBEMを使って、CSSの命名問題を解決していた
+  ただこれはコストが高かったりスマートじゃなくbestな手法とは言えなかった
+
+CSS ModulesはTailwindやCSS in JSとは別物
+  これらに比べて、CSSの記述が簡潔で、CSSの管理が楽になる(copilot)
+
+***
+プチ情報
+Reactのcssを設定するときは、classNameを使う
+  実際のブラウザでは`class="hoge"`となる
+***
+
+cssをグローバルに設定したい場合は、`_app.tsx`に記述する
+
+同じクラス名を設定したとしても、コンポーネントごとに把握されることになるので、衝突しない
+  そのため同じクラス名でもコンポーネントごとに異なるスタイルを設定できる
+
+* 公式にcss modulesについての詳細が載っているので見ると良い
+
+===
+
+#6
+「Linkコンポーネントを使って高速なページ遷移を実現しよう」
+
+【Linkコンポーネント】
+Next.jsの機能
+画面遷移を行う場合はLinkコンポーネントをできるだけ使う
+prefetchという機能があるため、Linkコンポーネントを使うと高速に画面遷移ができる
+参照：
+JavaScript/next_js_チュートリアル/chapter5/text5.txt
+
+しまぶー
+「Next.jsが持っている素晴らしい機能の1つ」
+
+

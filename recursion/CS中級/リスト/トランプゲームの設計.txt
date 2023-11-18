@@ -1,0 +1,27 @@
+(1)
+・Cardクラスの作成とインスタンス化
+・柄と数字を文字列として返すメソッドの作成
+
+(2)
+・deckクラスを作成し、deckを生成するクラスメソッドを作成
+  （rubyではself.xxxとした）
+
+(3)
+・コンストラクタ関数でdeckを生成する -> インスタンス変数をループするメソッドを作成
+
+(4)
+デッキのシャッフル -  in-place アルゴリズムを使用する
+
+  （Rubyだと@deck.shuffle!で一発で実装できた）
+
+(11)
+# ループするとき、途中のindexから始める方法
+
+with_indexメソッドに引数を渡すと、その数値からインデックスのカウントを開始します
+           ..................
+  num_list.each.with_index(1) do |num, i| # eachドットwith_index(1)であることに注意
+    if num > max_value
+      max_index = i
+      max_value = num
+    end
+  end

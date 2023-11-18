@@ -1,0 +1,108 @@
+Active Record バリデーション
+
+1. 概要
+
+2種類のActive Recordのオブジェクト
+・DBの行に対応しているものとそうでないもの
+
+new_record?メソッドで判定できる
+  DBに存在しない… new_record? => true
+  DBに存在する…… new_record? => false
+
+保存時の流れ
+railsのsaveメソッド => バリデーション実行 => SQLのINSERT文を実行
+  (バリデーションに失敗した場合(invalid)は、saveメソッドはfalseを返す)
+
+更新時の流れ
+railsのupdateメソッド => バリデーション実行 => SQLのUPDATE文を実行
+
+バリデーションを行わずにオブジェクトを保存するメソッドもある
+  ex. decrement!メソッド また`save(validate: false)`でもできる
+
+errors[]
+  バリデーションに失敗した時に、特定の属性ごとにエラーメッセージを格納する
+  エラーメッセージは、ハッシュで格納されている
+  errors[:title] => ["can't be blank"]
+  errors[:title].any? => true
+
+===
+
+2. バリデーションヘルパー
+
+comparison ... ふたつの属性の値を比較する
+  validates :discount_rate, numericality: { less_than_or_equal_to: :price }
+
+inclusion ... 属性の値が、指定した配列に含まれているかどうかを検証する
+  validates :size, inclusion: { in: %w(small medium large) }
+
+numericality ... 属性の値が数値であるかどうかを検証する デフォルトでは、整数値または浮動小数点数値にマッチする
+  validates :price, numericality: true
+
+presence ... 属性の値が空でないかどうかを検証する 内部でObject#blank?メソッドが呼び出される
+  validates :title, presence: true
+
+* inverse_ofオプション ... 関連づけられたモデル間で逆向きの関連付けを設定する役割
+  詳細ブログ https://techtechmedia.com/inverse-of-rails/
+
+  inverse_ofオプションを使うべきケース
+    実際のテーブル名と関連付けにしているモデル名が異なる場合
+
+uniqueness ... 属性の値が一意であるかどうかを検証する
+               オプションとして、重複を許さない範囲を指定できるscopeや、大文字小文字についてのcase_sensitiveなどがある
+  validates :title, uniqueness: true
+
+===
+
+3. バリデーションの共通オプション
+
+:allow_nil, :allow_blank ... バリデーションをスキップする条件を指定する
+
+:on ... バリデーション実行のタイミングを指定する
+        オプションはデフォルトでは保存時（レコードの作成時および更新時の両方）に実行されるが、
+        :create :update などとタイミングを指定できる
+
+===
+
+5. 条件付きバリデーション
+
+:if, :unless ... バリデーションを実行するかどうかを判定する条件を指定する
+                シンボルだけでなく、Procオブジェクトを指定することもできる
+
+個人メモ
+validates はデフォルトのメソッド
+validate  はカスタムバリデーションを定義するメソッド
+
+===
+
+7. バリデーションエラーに対応する
+
+errorの詳細にアクセスできるメソッドの一部
+詳細は`ActiveModel::Errorsドキュメント`を参照
+
+errorメソッド
+  すべてのエラーを含むActiveModel::Errorクラスのインスタンスを1つ返します。
+  個別のエラーは、ActiveModel::Errorオブジェクトによって表現されます
+  ex. aq.errors.full_messages
+    => ["Creatorを入力してください", "Companyを入力してください"]
+
+errors[]メソッド
+  特定の属性についてのエラーメッセージ確認
+  ex. OfficerApproval.errors[:creator]
+    => ["を入力してください"]
+
+errors.where
+errors.add
+errors[:base]
+
+===
+
+8. バリデーションエラーをビューで表示する
+
+フォームをRailsのフォームヘルパーで生成した場合、あるフィールドでバリデーションエラーが発生すると、
+そのエントリの周りに追加の<div>が自動的に生成される
+
+  ex. <div class="field_with_errors">
+        <input id="article_title" name="article[title]" size="30" type="text" value="">
+      </div>
+
+

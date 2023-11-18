@@ -1,0 +1,29 @@
+#1
+Next.jsの機能の中で初心者が学ぶとよいもの
+
+・zero config
+  素のreactだといろいろ設定しないといけないが、next.jsは設定が不要になる
+
+(* SSG/SSR は重要だがここでは学ばない)
+
+・File System Routing
+  ファイル名をそのままURLにすることができる
+
+・Built-in CSS Support
+  CSS Modulesが使える
+
+#2 コンポーネント 静的ページの作り方
+
+reactは「宣言的なView」
+素のJSやjQueryは「命令的なView」
+
+・メインの内容としては真新しいことは特になし
+
+【exportの方法について】
+
+おすすめ： export function Xxxxx() {}
+非推奨？： export default function Xxxxx() {}
+  理由：export defaultはimportするときに名前を変えられるため、デバッグがしにくい
+
+  export default は1つのモジュールにつき1つしか使用できない
+  export function を使用すると、同じモジュールで複数の関数やコンポーネントをエクスポートできる

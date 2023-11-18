@@ -1,0 +1,3 @@
+https://speakerdeck.com/knr/shu-shi-yi-norekodowochi-tu-5nian-mu-sabisuno-she-ji-tozhang-hai-jie-jue
+
+・数十億行あるようなテーブルではカラムの型を適切なものにしておかないと障害が発生することがある

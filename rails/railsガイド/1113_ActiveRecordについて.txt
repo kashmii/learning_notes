@@ -1,0 +1,7 @@
+・CoC(Convention over Configuration)
+  ・命名ルール（modelやクラスはキャメルケース、テーブルはスネークケースで複数形）
+・modelのCRUD
+・バリデーション
+・コールバック（before_createなど）
+・マイグレーション
+  ・データベーススキーマを管理するためのDSL（ドメイン固有言語: Domain Specific Language）

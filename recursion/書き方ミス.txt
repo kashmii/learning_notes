@@ -1,0 +1,36 @@
+真偽値を返すときはif文を使わずに、条件式を書きっぱなしにする
+
+✕
+if count_values.length == 1
+    true
+else
+    false
+end
+
+◯
+count_values.length == 1
+
+===
+
+失敗例 2023/11/17
+処理の順序を間違えていた
+ループ処理の最後にパラメータに数字を加算して次のループへ行くという処理を書いていたが、
+適切なタイミングで加算する前に特定の値に加算してしまっていた
+
+教訓： ループ処理の1周の最後の処理には細心の注意を払う
+
+  失敗コード
+    if ha1[c_i_for_arr] != ha2[c_i_for_arr]
+        ha1[c_i_for_arr] > ha2[c_i_for_arr] ? winner = "player1" : winner = "player2"
+        break
+    end
+    check_index += 1
+    break if check_index >= hand_level_1.length
+    c_i_for_arr += hand_level_1[check_index] # ここで加算しておりcheck_indexの値が変わってしまっている
+
+    正解コード
+    end
+    c_i_for_arr += hand_level_1[check_index] # 正しくはここ
+    check_index += 1
+    break if check_index >= hand_level_1.length
+

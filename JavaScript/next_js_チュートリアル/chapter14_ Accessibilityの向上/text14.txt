@@ -1,0 +1,41 @@
+内容
+
+Next.jsでeslint-plugin-jsx-a11yを使用してアクセシビリティのベストプラクティスを実装する方法。
+
+サーバーサイドのフォームバリデーションを実装する方法
+
+React useFormStateフックを使用してフォームエラーを処理し、ユーザーに表示する方法。
+
+===
+# アクセシビリティとは、障害のある人を含め、誰もが使用できるウェブアプリケーションを設計し、
+実装することを指します。
+
+===
+## サーバーサイドバリデーション
+
+## useFormState フック
+
+2つの引数を取ります：(action, initialState)
+2つの値を返します：[state, dispatch] - フォームの状態と、ディスパッチ関数（useReducerに似ています）
+
+<流れ>
+
+useFormStateの返り値であるdispatchをformタグのactionに渡すことで、
+フォームの状態をサーバーに送信する
+
+  （useFormStateの引数のinitialStateの中身は自分で定義する）
+
+useFormStateの引数のcreateInvoiceはactions.tsで定義されている
+  コード：const CreateInvoice = InvoiceSchema.omit({ id: true, date: true });
+
+  InvoiceSchema というオブジェクトから id と date プロパティを除外した新しいオブジェクトを作成している
+
+
+createInvoiceの引数にprevStateを追加
+function createInvoice(prevState: State, formData: FormData)
+
+
+
+const validatedFields = CreateInvoice.safeParse({
+safeParse()は、成功フィールドかエラーフィールドを含むオブジェクトを返します。これにより、
+try/catchブロックの中にこのロジックを置くことなく、より優雅にバリデーションを処理することができます。

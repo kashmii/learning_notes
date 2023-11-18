@@ -1,0 +1,15 @@
+getting started
+
+* package main
+パッケージは関数をグループ化する方法であり、同じディレクトリ内のすべてのファイルで構成されます
+
+
+
+
+
+
+// ======
+
+// タイプを確認する方法
+// "reflect"
+fmt.Println(reflect.TypeOf(t))
