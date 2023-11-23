@@ -1,0 +1,30 @@
+1. npx create-next-app@latest でサンプルアプリを作成
+   不要なファイルを削除
+
+2. next/fontの導入
+
+3. Tailwind CSSの導入
+
+4. Prismaの導入
+  * sqliteを利用
+
+5. seedデータの作成
+
+6. globals/db.ts の作成 - server-only のインストール
+
+== ここまでは設定などの下準備・次から実装 ==
+
+7. トップページの実装
+  a. headerコンポーネントを作成して、layout.tsxに設置
+  b. コンテンツ部分を実装
+
+8. 一覧ページの作成
+  a. 一覧取得APIの作成実装 Route Handlersを使う
+    ルートハンドラを使用すると、Web リクエスト API とレスポンス API を使用して、
+    指定したルートのカスタムリクエストハンドラを作成できます。
+
+    app/api/notes/route.tsを作成したことで、/api/notesにGETリクエストを送ると、ノート一覧を取得できるようになる
+
+  b. 一覧表示コンポーネントの実装
+  c.
+  d.

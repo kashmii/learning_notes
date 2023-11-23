@@ -1,0 +1,37 @@
+App Directory / App Router
+  ... next.js 13の新機能
+
+  * App Directory の機能によりそれ以前のpagesディレクトリベースの開発が置き換えられる可能性がある
+
+  appディレクトリ直下のpage.tsx
+    ルートページ（/）に対応
+  同様にapp/samplesディレクトリ以下にpage.tsxを配置すると、/samplesに対応するページが作成できます。
+  app/samples/[id]/page.tsxを作成すると、/samples/:idに対応するページになります(パスパラメーターやクエリパラメーターにも対応している)
+
+  layout.tsx
+    その階層以下で表示される共通のレイアウトとなります
+
+    appディレクトリ直下のlayout.tsx
+      RootLayoutと呼ばれ、<html>や<body>タグを含む必要があります
+      これは従来あった_document.tsxの代替となります
+
+      ex. 従来の_document.tsx の一部
+        export default function Document() {
+          return (
+            <Html lang="en">
+              <Head />
+              <body>
+                <Main />
+                <NextScript />
+              </body>
+            </Html>
+          )
+        }
+        ```
+
+      layout.tsx も同様にパスパラメーターとクエリパラメーターが使用可能
+
+  Route Handlers（API）
+   ... route.tsはAPIのハンドラーであり、API Routesの代替となる
+       route.tsはGET・POST・PUT・PATCH・DELETEなどの関数をエクスポートすることで、それぞれのHTTPメソッドに対応するハンドラーとなる
+       route.tsをpage.tsxと同じディレクトリには配置できない
