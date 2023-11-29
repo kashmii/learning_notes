@@ -15,6 +15,7 @@ React useFormStateフックを使用してフォームエラーを処理し、�
 
 ## useFormState フック
 
+クライアントコンポーネントのみで動作する
 2つの引数を取ります：(action, initialState)
 2つの値を返します：[state, dispatch] - フォームの状態と、ディスパッチ関数（useReducerに似ています）
 
@@ -35,7 +36,19 @@ createInvoiceの引数にprevStateを追加
 function createInvoice(prevState: State, formData: FormData)
 
 
+safeParse()
 
 const validatedFields = CreateInvoice.safeParse({
 safeParse()は、成功フィールドかエラーフィールドを含むオブジェクトを返します。これにより、
 try/catchブロックの中にこのロジックを置くことなく、より優雅にバリデーションを処理することができます。
+
+
+
+
+===
+個人メモ
+useFormStateをつかうことでサーバーサイドのバリデーションを実装することができる
+サーバーサイドではsafeParseを使うことで、formから送られてきた各項目が正しいかどうかを判定することができる
+エラーがあるかどうかはuseFormStateの返り値であるstateの中身をみればわかる
+エラーが有る場合はHTMLの部分で state.errors?.customerId? のような形でエラー文を表示させる
+===
