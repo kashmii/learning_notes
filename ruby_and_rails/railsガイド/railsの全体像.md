@@ -10,7 +10,7 @@ https://atmarkit.itmedia.co.jp/ait/articles/1103/09/news112.html
 * Action DispatchとAction Controllerをまとめたもの
 * リクエストとレスポンスの間のやりとりを処理し、ユーザーが操作できるウェブアプリケーションを構築するための必須コンポーネント
 
-###　Action Dispatch
+### Action Dispatch
 * リクエストの処理やルーティング、ミドルウェアを提供します
 * リクエストがRailsアプリケーションに到達すると、Action Dispatchはルーティングを処理し、適切なコントローラーアクションにリクエストをディスパッチする
 
@@ -25,3 +25,9 @@ https://atmarkit.itmedia.co.jp/ait/articles/1103/09/news112.html
 
 ##　Bundler
 * Railsアプリケーションで使用するgemライブラリの管理を行うためのライブラリです。アプリケーションに必要なgemライブラリは、すべてBundlerで管理およびインストールします
+
+
+<!-- ちなみに。Railsディレクトリに存在するファイル数・コードの行数は以下の通り。膨大すぎる
+
+ファイル数： 約4700
+全ファイルの合計行数: 約190万行 -->
